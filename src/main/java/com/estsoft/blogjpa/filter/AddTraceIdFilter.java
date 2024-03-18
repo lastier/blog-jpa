@@ -11,7 +11,7 @@ import java.util.UUID;
 public class AddTraceIdFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException{
-        log.info("1. AddTraceFilter init - {}",filterConfig.getFilterName());
+        log.info("2. AddTraceFilter init - {}",filterConfig.getFilterName());
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AddTraceIdFilter implements Filter {
 
     @Override
     public void destroy(){
-        log.info("2. AddTraceIdFilter destroy");
+        log.info("2. AddTraceIdFilter destroy()");
     }
 
 }
