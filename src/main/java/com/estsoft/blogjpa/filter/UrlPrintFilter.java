@@ -19,7 +19,7 @@ public class UrlPrintFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        log.info("1. UrlPrintFilter {}");
+        log.info("1. UrlPrintFilter {}", httpServletRequest.getRequestURL().toString());
 
         log.info("1. UrlPrintFilter before");
 //        request.setAttribute("traceId", UUID.randomUUID().toString());

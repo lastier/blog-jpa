@@ -8,27 +8,30 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder encoder){
-        this.userRepository = userRepository;
-        this.encoder = encoder;
+    public User save(AddUserRequest request){
+        return userRepository.save(new User(
+                request.getEmail(), encoder.encode(request.getPassword())));
     }
 
-//    public void save(AddUserRequest dto){
+//    public User save(AddUserRequest request){
 //        userRepository.save(new User(
-//                dto.getEmail(), encoder.encode(dto.getPassword())));
+//                request.getEmail(), encoder.encode(request.getPassword())));
 //    }
 
-    public User save(AddUserRequest dto){
-        return userRepository.save(
-                User.builder()
-                        .email(dto.getEmail())
-                        .password(encoder.encode(dto.getPassword()))
-                        .build()
-        );
-    }
+//    public User save(AddUserRequest request){
+//        return userRepository.save(
+//                User.builder()
+//                        .email(request.getEmail())
+//                        .password(encoder.encode(request.getPassword()))
+//                        .build()
+//        );
+//    }
+
+
 }
