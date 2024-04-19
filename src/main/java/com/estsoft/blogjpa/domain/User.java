@@ -2,10 +2,12 @@ package com.estsoft.blogjpa.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,17 +18,19 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", updatable = false)
     private Long id;
 
-    @Column(name="email", nullable = false)
+    @Column(name="email", nullable = false, unique=true)
     private String email;
 
     @Column(name="password", nullable = false)
     private String password;
 
+    @CreatedDate
+    private LocalDateTime createdAt;
+
     @Builder
-    public User(String email, String password, String auth){
+    public User(String email, String password){
         this.email = email;
         this.password = password;
     }
@@ -38,11 +42,13 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
+        System.out.println(id+", email : "+email);
         return email;
     }
 
     @Override
     public String getPassword() {
+        System.out.println(id+", pw : "+password);
         return password;
     }
 
@@ -67,6 +73,7 @@ public class User implements UserDetails {
     // 계정 사용 여부 반환 (true: 사용 가능)
     @Override
     public boolean isEnabled() {
+        System.out.println("isEnabled");
         return true;
     }
 }

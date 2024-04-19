@@ -16,7 +16,7 @@ public class AddTraceIdFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        request.setAttribute("traceId", UUID.randomUUID().toString());
+        request.setAttribute("traceId2", UUID.randomUUID().toString());
         log.info("2. AddTraceIdFilter before");
         chain.doFilter(request, response);
         log.info("2. AddTraceIdFilter after");

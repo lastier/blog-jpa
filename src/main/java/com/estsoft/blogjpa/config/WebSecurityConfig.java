@@ -17,7 +17,7 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer configure(){
         return web -> web.ignoring().requestMatchers(toH2Console())
-                .requestMatchers("/static/**");
+                .requestMatchers("/static/**","/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html");
     }
 
     //특정 HTTP 요청에 대한 웹 기반 보안
@@ -39,4 +39,5 @@ public class WebSecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 }
